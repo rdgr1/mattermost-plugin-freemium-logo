@@ -1,20 +1,11 @@
 {
     "name": "Freemium",
     "id": "freemium",
-    "description": "This plugin injects custom scripts on the web page to improve the standard edition appearance.",
+    "description": "Injects custom styling on the web UI to remove branding and enterprise edition ads.",
     "homepage_url": "https://github.com/dy0gu/mattermost-plugin-freemium",
     "support_url": "https://github.com/dy0gu/mattermost-plugin-freemium/issues",
-    "icon_path": "icon.svg",
+    "icon_path": "resources/icon.svg",
     "min_server_version": "9.11.0",
-    "server": {
-        "executables": {
-            "linux-amd64": "api/plugin-linux-amd64",
-            "linux-arm64": "api/plugin-linux-arm64",
-            "darwin-amd64": "api/plugin-darwin-amd64",
-            "darwin-arm64": "api/plugin-darwin-arm64",
-            "windows-amd64": "api/plugin-windows-amd64.exe"
-        }
-    },
     "webapp": {
         "bundle_path": "web/plugin-umd.js"
     },

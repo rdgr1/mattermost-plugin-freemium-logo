@@ -8,19 +8,25 @@ from pathlib import Path
 
 class PluginBuilder:
     def __init__(self):
-        self.plugin_id = self._get_plugin_id()
-        self.plugin_version = self._get_plugin_version()
-        self.bundle_name = f"{self.plugin_id}.tar.gz"
-        self.bundle_dist = Path("dist")
+        self.plugin_manifest = Path("plugin.json")
+        self.plugin_meta= Path("version.txt")
         self.api_dist = Path("api/dist")
         self.web_dist = Path("web/dist")
+        self.resources = Path("resources")
+        self.bundle_dist = Path("dist")
+        self.plugin_data = self._load_plugin_json()
+        self.plugin_version = self._get_plugin_version()
+        self.plugin_id = self.plugin_data["id"]
+        self.bundle_name = f"{self.plugin_id}.tar.gz"
+        self.build_api_enabled = "server" in self.plugin_data
+        self.build_web_enabled = "webapp" in self.plugin_data
 
-    def _get_plugin_id(self):
-        with open("plugin.json", "r") as f:
-            return json.load(f)["id"]
+    def _load_plugin_json(self):
+        with open(self.plugin_manifest, "r") as f:
+            return json.load(f)
 
     def _get_plugin_version(self):
-        with open("version.txt", "r") as f:
+        with open(self.plugin_meta, "r") as f:
             return f.read().strip()
 
     def clean(self):
@@ -35,8 +41,11 @@ class PluginBuilder:
 
     def build_api(self):
         """Build API module for all supported architectures"""
+        if not self.build_api_enabled:
+            print("API module not included in manifest, skipping build")
+            return
         print("Building API module...")
-        subprocess.run(["go", "mod", "download"], cwd="api", check=True, shell=(os.name == "nt"))
+        subprocess.run(["go", "mod", "tidy"], cwd="api", check=True, shell=(os.name == "nt"))
         self.api_dist.mkdir(parents=True, exist_ok=True)
 
         platforms = [
@@ -63,6 +72,9 @@ class PluginBuilder:
 
     def build_web(self):
         """Build web module"""
+        if not self.build_web_enabled:
+            print("Web module not included in manifest, skipping build")
+            return
         print("Building web module...")
         subprocess.run(["npm", "ci", "--silent"], cwd="web", check=True, shell=(os.name == "nt"))
         self.web_dist.mkdir(parents=True, exist_ok=True)
@@ -81,28 +93,31 @@ class PluginBuilder:
         plugin_dir.mkdir(parents=True, exist_ok=True)
 
         # Update plugin.json with version
-        with open("plugin.json", "r") as f:
-            plugin_data = json.load(f)
-        plugin_data["version"] = self.plugin_version
+        self.plugin_data["version"] = self.plugin_version
+        with open(plugin_dir / self.plugin_manifest, "w") as f:
+            json.dump(self.plugin_data, f, indent=4)
 
-        with open(plugin_dir / "plugin.json", "w") as f:
-            json.dump(plugin_data, f, indent=4)
+        # Copy resources to the distribution directory
+        shutil.copytree(self.resources, plugin_dir /  self.resources)
 
-        # Copy files to distribution directory
-        shutil.copy("icon.svg", plugin_dir)
-
-        # Copy API and web builds
-        shutil.copytree(self.api_dist, plugin_dir / "api/")
-        shutil.copytree(self.web_dist, plugin_dir / "web/")
+        # Copy API and web builds if they exist
+        if self.build_api_enabled:
+            shutil.copytree(self.api_dist, plugin_dir / self.api_dist.parent.name)
+        if self.build_web_enabled:
+            shutil.copytree(self.web_dist, plugin_dir / self.web_dist.parent.name)
 
         # Create tar bundle
         with tarfile.open(self.bundle_dist / self.bundle_name, "w:gz") as tar:
             tar.add(plugin_dir, arcname=plugin_dir.name)
 
-        # Remove the non-bundled directory
+        # Remove the non-bundled directories
         shutil.rmtree(plugin_dir)
+        if self.build_api_enabled:
+            shutil.rmtree(self.api_dist)
+        if self.build_web_enabled:
+            shutil.rmtree(self.web_dist)
 
-        print(f"Plugin bundled to root /{self.bundle_dist} as {self.bundle_name}")
+        print(f"Plugin bundled to /{self.bundle_dist} as {self.bundle_name}")
 
 def main():
     parser = argparse.ArgumentParser(description="Simple cross-platform plugin bundler")

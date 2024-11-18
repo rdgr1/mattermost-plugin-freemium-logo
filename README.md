@@ -2,13 +2,16 @@
 
 This plugin removes all free tier labels, warnings, and enterprise upgrade reminders from the Mattermost free edition web interface. It was created to support a clean, self-hosted experience free from branding or ads tied to the original platform.
 
-Initially, the idea was to allow custom user CSS via a plugin settings text box. However, this was discarded out of respect for the Mattermost team, as they've since implemented this feature in the enterprise edition.
+Initially, the idea was to allow custom user CSS branding via a plugin settings text box. However, this was discarded out of respect for the Mattermost team, as they've since implemented this feature in the enterprise edition.
 
 To clarify, this plugin is not intended to undermine Mattermost's work. The paid editions are vital to the platform's continued development and the talented team behind it. If you can, consider supporting them. Instead, this plugin provides an alternative for those who cannot purchase a paid edition or are restricted by legal or branding requirements.
 
 Feel free to raise issues for any areas you think the plugin should address but currently doesn't.
 
-Here is a non-exhaustive showcase of some of the changes made by the plugin:
+**Here is a non-exhaustive showcase of some of the changes made by the plugin:**
+
+![1](https://i.postimg.cc/QNbtDHwf/1.png)
+![2](https://i.postimg.cc/HnBs9hXq/2.png)
 
 ## Usage 🚀
 
@@ -33,6 +36,10 @@ Any new version is also likely compatible out of the box and will be incremental
 
 See below for setting up a local workspace to work on the plugin, this section is targeted at developers.
 
+The project structure here consists of a highly modified and optimized version of the [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). To preserve simplicity, testing and development workflows have been removed, this means the plugin must be rebuilt and manually uploaded into a Mattermost instance anytime you want to test it.
+
+The build version is based on the `version.txt` file that automatically gets bumped by the CI pipeline when a release is made.
+
 - ### Requirements 📋
 
   - Go ([version](api/go.mod#L3))
@@ -48,6 +55,16 @@ See below for setting up a local workspace to work on the plugin, this section i
     - [api](api/README.md)
     - [web](web/README.md)
 
+- ### Build 📦
+
+  - Run the cross-platform build script to automatically create an installable plugin artifact:
+
+    ```shell
+    python build.py
+    ```
+
+  - The resulting `tar.gz` file is in the format accepted by Mattermost.
+
 - ### Tools 🧰
 
   - Pre-commit hooks to run project formatting and linting:
@@ -58,5 +75,10 @@ See below for setting up a local workspace to work on the plugin, this section i
     lefthook install
 
     # When using pre-commit hooks, git commands will fail if any files are checked with errors.
-    # These files must be added to the staging area and commited again after being updated.
+    # These files must be added to the staging area and commited again after being fixed up.
     ```
+
+- ### Tips 💡
+
+  - Fork the project and edit the `web/styles/override.module.css` file to add any custom styling or branding you need, in addition to the changes
+  provided by the plugin.
