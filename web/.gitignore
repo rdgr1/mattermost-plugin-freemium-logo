@@ -1,0 +1,13 @@
+# IDE
+.idea/
+.vscode/
+xcuserdata/
+
+# Miscellaneous
+.DS_Store
+
+# Dependencies
+node_modules
+
+# Build
+dist/

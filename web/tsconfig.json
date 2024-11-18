@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"paths": {
+			"~/*": ["./src/*"]
+		},
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"target": "ES5",
+		"moduleResolution": "node",
+		"jsx": "react",
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true
+	},
+	"include": ["src"]
+}

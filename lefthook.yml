@@ -1,0 +1,15 @@
+output: false
+
+pre-commit:
+  parallel: true
+
+  commands:
+    api:
+      root: api
+      run: go fmt ./src
+      stage_fixed: true
+
+    web:
+      root: web
+      run: npx biome format --write
+      stage_fixed: true

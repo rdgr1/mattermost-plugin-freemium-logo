@@ -1,0 +1,39 @@
+name: code
+
+on:
+  push:
+    branches: [main]
+  pull_request_target:
+
+jobs:
+  api-check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api/src
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: api/go.mod
+          cache-dependency-path: api/go.sum
+      - name: Run formatter
+        run: go fmt .
+      - name: Run linter
+        run: go vet .
+  web-check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: web/package.json
+          cache-dependency-path: web/package-lock.json
+      - name: Install Biome
+        working-directory: ./
+        run: npm install -g @biomejs/biome@$(< package.json jq -r ".devDependencies.\"@biomejs/biome\"")
+      - name: Run check
+        run: npm run check

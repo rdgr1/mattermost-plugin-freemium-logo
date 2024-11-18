@@ -1,0 +1,39 @@
+name: release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    outputs:
+      tag-name: ${{ steps.metadata.outputs.tag_name }}
+      release-created: ${{ steps.metadata.outputs.release_created }}
+    steps:
+      - name: Update project metadata and the release pull request
+        uses: googleapis/release-please-action@v4
+        id: metadata
+        with:
+          release-type: simple
+  build:
+    needs: [metadata]
+    if: ${{ needs.metadata.outputs.release-created}}
+    uses: ./.github/workflows/build.yaml
+  upload:
+    needs: [metadata, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+      - name: Append build artifacts to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: >
+          gh release upload ${{ needs.metadata.outputs.tag-name }}
+          plugin/freemium.tar.gz
