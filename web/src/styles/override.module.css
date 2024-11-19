@@ -37,3 +37,16 @@ div[role="dialog"]:has(> #StartTrialFormModal) {
 .footer-copyright {
 	display: none !important;
 }
+
+/* Hide the feedback button in the board plugin page */
+.BoardComponent .top-head .TopBar {
+    display: none !important;
+}
+
+@media only screen and (max-width: 768px) {
+    /* Fix title top spacing in the board plugin page for mobile */
+    .BoardComponent .top-head .mid-head {
+        margin-top: 60px !important;
+    }
+}
+
