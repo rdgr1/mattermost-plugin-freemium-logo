@@ -1,7 +1,7 @@
 {
     "name": "Freemium",
     "id": "freemium",
-    "description": "Injects custom styling on the web UI to remove branding and enterprise edition ads.",
+    "description": "Injects custom styling on the web UI to remove native enterprise branding and add other QOL improvements.",
     "homepage_url": "https://github.com/dy0gu/mattermost-plugin-freemium",
     "support_url": "https://github.com/dy0gu/mattermost-plugin-freemium/issues",
     "icon_path": "resources/icon.svg",

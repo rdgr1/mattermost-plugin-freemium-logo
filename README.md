@@ -1,6 +1,6 @@
 # Keeping it clean 🧹💼
 
-This plugin removes all free tier labels, warnings, and enterprise upgrade reminders from the Mattermost free edition web interface. It was created to support a clean, self-hosted experience free from branding or ads tied to the original platform.
+This plugin was created to remove all free tier labels, warnings, and enterprise upgrade reminders from the Mattermost free edition web interface. It is intended to support a clean, self-hosted experience free from branding or ads tied to the original platform. It has now also evolved to provided QOL fixes for some less updated plugins, these fixes take no effect if you don't use such plugins.
 
 Initially, the idea was to allow custom user CSS branding via a plugin settings text box. However, this was discarded out of respect for the Mattermost team, as they've since implemented this feature in the enterprise edition.
 
@@ -16,9 +16,7 @@ Feel free to raise issues for any areas you think the plugin should address but 
 ## Usage 🚀
 
 - [Use this link to download the latest version.](https://github.com/dy0gu/mattermost-plugin-freemium/releases/latest/download/freemium.tar.gz)
-
 - Enable [custom plugin uploads](https://docs.mattermost.com/configure/plugins-configuration-settings.html#upload-plugin) in your configuration.
-
 - Install and enable the plugin using the admin console.
 
 ## Compatibility 📀
@@ -49,7 +47,6 @@ The build version is based on the `version.txt` file that automatically gets bum
 - ### Getting Started 🏁
 
   - Clone this repository.
-
   - Refer to each folder for instructions on that particular module.
 
     - [api](api/README.md)
@@ -81,4 +78,4 @@ The build version is based on the `version.txt` file that automatically gets bum
 - ### Tips 💡
 
   - Fork the project and edit the `web/styles/override.module.css` file to add any custom styling or branding you need, in addition to the changes
-  provided by the plugin.
+    provided by the plugin.

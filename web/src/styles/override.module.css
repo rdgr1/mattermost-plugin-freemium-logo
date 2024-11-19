@@ -40,13 +40,48 @@ div[role="dialog"]:has(> #StartTrialFormModal) {
 
 /* Hide the feedback button in the board plugin page */
 .BoardComponent .top-head .TopBar {
-    display: none !important;
+	display: none !important;
+}
+
+/* Fixes for the the boards plugin page */
+.CalendarContainer {
+	width: 100%;
+	height: 100%;
+	margin-right: 0 !important;
+	margin-bottom: 0 !important;
+	padding-bottom: 10px !important;
+	padding-right: 80px !important;
 }
 
 @media only screen and (max-width: 768px) {
-    /* Fix title top spacing in the board plugin page for mobile */
-    .BoardComponent .top-head .mid-head {
-        margin-top: 60px !important;
-    }
-}
+	/* Fixes for the mobile page of the boards plugin */
+	.BoardComponent .top-head .mid-head {
+		margin-top: 85px !important;
+		flex-wrap: wrap !important;
+		gap: 15px !important;
+	}
 
+	.focalboard-body .ViewTitle > .add-buttons .Button {
+		display: flex !important;
+	}
+
+	.fc-toolbar-title {
+		text-align: center !important;
+	}
+
+	.fc-header-toolbar .fc-toolbar-chunk:nth-of-type(3) {
+		justify-content: center !important;
+		align-items: center !important;
+		display: flex !important;
+		flex-direction: row !important;
+		flex-wrap: wrap !important;
+	}
+
+	.fc-dayGridWeek-button {
+		margin-left: 12px;
+	}
+
+	.CalendarContainer {
+		padding-right: 20px !important;
+	}
+}
