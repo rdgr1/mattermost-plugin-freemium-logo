@@ -66,6 +66,14 @@ div[role="dialog"]:has(> #StartTrialFormModal) {
 	left: -240px !important;
 }
 
+.focalboard-body .ErrorPage {
+    background-color: rgb(var(--sidebar-bg-rgb)) !important
+}
+
+.focalboard-body .ErrorPage > div {
+    display: none;
+}
+
 @media only screen and (max-width: 768px) {
 	/* Fixes for the mobile page of the boards plugin */
 	.BoardComponent .top-head .mid-head {
