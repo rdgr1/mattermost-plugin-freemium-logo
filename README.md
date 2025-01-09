@@ -77,5 +77,6 @@ The build version is based on the `version.txt` file that automatically gets bum
 
 - ### Tips 💡
 
-  - Fork the project and edit the `web/styles/override.module.css` file to add any custom styling or branding you need, in addition to the changes
-    provided by the plugin.
+  - The `api` section in **Go** is currently unused, you can fork the project and refer to the comments in the `web/src/main.tsx` file to see how additional styling or branding can be added or removed, in addition to the changes provided by the plugin.
+
+  - For an example of a plugin manifest with both server and webapp logic see this [template repository](https://github.com/mattermost/mattermost-plugin-starter-template/blob/master/plugin.json) from the official mattermost team, this repository is a heavily modded version of that template.

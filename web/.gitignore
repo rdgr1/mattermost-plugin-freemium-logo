@@ -9,5 +9,11 @@ xcuserdata/
 # Dependencies
 node_modules
 
+# Environment
+*.env*
+*.pem*
+|.pem.example
+!.env.example
+
 # Build
 dist/

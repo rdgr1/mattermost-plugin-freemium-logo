@@ -1,49 +1,9 @@
-/* Hide the Mattermost name, icon and free label tag from the home page */
-[class^="ProductBrandingTeamEditionContainer"] {
-	display: none !important;
-}
-
-/* Hide the Mattermost name, icon and free label tag from the login page */
-.header-logo-link:has(> .freeBadge) {
-	display: none !important;
-}
-
-/* Hide the team edition warning in the bottom of the open top left corner menu */
-#startTrial {
-	display: none !important;
-}
-
-/* Hide the leftover menu divider that was above the warning */
-li.menu-divider:has(+ #startTrial) {
-	display: none !important;
-}
-
-/* Hide the free trial banner / upgrade card in the admin console license page */
-.admin-console__banner_section:has(.AlertBanner.info.AlertBanner--sys) {
-	display: none !important;
-}
-
-/* Hide the TeamEditionRightPanel card in the right panel of the admin console license page */
-.right-panel:has(> .panel-card + .compare-plans-text) {
-	display: none !important;
-}
-
-/* Hide any upgrade dialogs that pop up*/
-div[role="dialog"]:has(> #StartTrialFormModal) {
-	display: none !important;
-}
-
-/* Hide the footer notice text */
-.footer-copyright {
-	display: none !important;
-}
-
-/* Hide the feedback button in the board plugin page */
+/* Hide the feedback button in the boards page */
 .BoardComponent .top-head .TopBar {
 	display: none !important;
 }
 
-/* Fixes for the the boards plugin page */
+/* Fixes for the desktop boards page */
 .CalendarContainer {
 	width: 100%;
 	height: 100%;
@@ -67,7 +27,7 @@ div[role="dialog"]:has(> #StartTrialFormModal) {
 }
 
 @media only screen and (max-width: 768px) {
-	/* Fixes for the mobile page of the boards plugin */
+	/* Fixes for the mobile boards page */
 	.BoardComponent .top-head .mid-head {
 		margin-top: 80px !important;
 		flex-wrap: wrap !important;
@@ -121,14 +81,14 @@ div[role="dialog"]:has(> #StartTrialFormModal) {
 }
 
 @media only screen and (max-width: 975px) {
-	/* Fixes for the card detail popup in the page of the boards plugin */
+	/* Fixes for the boards mobile card detail popup */
 	.dialog:has(.CardDetail) {
 		border-radius: 0 !important;
 	}
 }
 
 @media only screen and (max-width: 430px) {
-	/* Fixes for mobile popups on the boards plugin page */
+	/* Fixes for other boards mobile popups */
 	.Menu.noselect {
 		width: 100vw !important;
 		max-width: 100vw !important;

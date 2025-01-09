@@ -7,6 +7,8 @@ export default defineConfig({
 	plugins: [tsconfigPaths()],
 	logLevel: "warn",
 	build: {
+		minify: false,
+		sourcemap: true,
 		lib: {
 			entry: path.resolve(__dirname, "src/main.tsx"),
 			name: manifest.name,

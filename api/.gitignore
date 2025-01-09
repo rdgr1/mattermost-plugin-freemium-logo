@@ -6,5 +6,11 @@ xcuserdata/
 # Miscellaneous
 .DS_Store
 
+# Environment
+*.env*
+*.pem*
+|.pem.example
+!.env.example
+
 # Build
 dist/
