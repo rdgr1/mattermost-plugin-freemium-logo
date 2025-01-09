@@ -34,7 +34,9 @@ class Plugin {
 		});
 	}
 
-	public uninitialize() {}
+	public uninitialize() {
+		// No cleanup needed with current implementation
+	}
 }
 
 window.registerPlugin(manifest.id, new Plugin());
