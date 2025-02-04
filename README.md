@@ -34,7 +34,7 @@ Any new version is also likely compatible out of the box and will be incremental
 
 See below for setting up a local workspace to work on the plugin, this section is targeted at developers.
 
-The project structure here consists of a highly modified and optimized version of the [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). To preserve simplicity, testing and development workflows have been removed, this means the plugin must be rebuilt and manually uploaded into a Mattermost instance anytime you want to test it.
+The project structure here consists of a highly modified and optimized version of the [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). Testing and development workflows have been removed to preserve plugin simplicity. **This means the plugin must be rebuilt and manually uploaded into a Mattermost instance anytime you want to test it**.
 
 The build version is based on the `version.txt` file that automatically gets bumped by the CI pipeline when a release is made.
 

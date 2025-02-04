@@ -6,7 +6,7 @@
     npm i
     ```
 
-- Edit the `web/styles/override.module.css` file that gets injected into the page to add additional styles that override the original platform styling.
+- Refer to the comments in the `src/main.tsx` file to see how additional styling can be added/removed.
 
 - Build the web module:
 
