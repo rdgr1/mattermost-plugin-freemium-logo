@@ -19,17 +19,37 @@ class Plugin {
 		// CSS INJECTION
 		const style = document.createElement("style");
 		style.textContent = [
-			// Import as raw and join the contents to be added to the DOM, additional styles can be appended here
 			premiumCSS,
 			boardsCSS,
 		].join("\n");
 		document.head.appendChild(style);
-
+	
+		// 🔹 Substituir a logo do Mattermost por uma imagem PNG
+		const replaceLogo = () => {
+			const brandingElement = document.querySelector('[class^="ProductBrandingTeamEditionContainer"]');
+	
+			if (brandingElement) {
+				// Remover elementos internos (como o SVG antigo)
+				brandingElement.innerHTML = '';
+	
+				// Criar uma nova imagem
+				const newLogo = document.createElement("img");
+				newLogo.src = "/static/plugins/mattermost-plugin-freemium/assets/logo.png"; // Caminho para sua imagem
+				newLogo.alt = "Nova Logo";
+				newLogo.style.width = "200px"; // Ajuste conforme necessário
+				newLogo.style.height = "auto"; // Mantém a proporção
+	
+				// Adiciona a imagem ao c2ontainer da logo
+				brandingElement.appendChild(newLogo);
+			}
+		};
+	
+		// 🔹 Espera a página carregar e troca a logo
+		document.addEventListener("DOMContentLoaded", replaceLogo);
+	
 		// TS INJECTION
 		registry.registerGlobalComponent(() => {
-			// Call any script that needs to be ran in the app, additional functions can be added here
 			boardsTS();
-
 			return null;
 		});
 	}
