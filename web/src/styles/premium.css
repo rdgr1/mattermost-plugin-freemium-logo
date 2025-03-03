@@ -7,12 +7,12 @@
     display: none !important;
 }
 [class^="ProductBrandingTeamEditionContainer-jtUrLg hiiIUg"] {
-    background-image: url('https://github.com/rdgr1/mattermost-plugin-freemium-logo/blob/main/imgs/png/Logo-Bra.png') !important;
+    background-image: url('https://raw.githubusercontent.com/rdgr1/mattermost-plugin-freemium-logo/refs/heads/main/imgs/png/Logo-Bra.png') !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
-    width: 250px !important;
-    height: 50px !important;
+    width: 240px !important;
+    height: 40px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -21,7 +21,18 @@
 .header-logo-link:has(> .freeBadge) {
 	display: none !important;
 }
-
+.header-logo-link {
+    font-size: 0 !important;
+    background-image: url('https://raw.githubusercontent.com/rdgr1/mattermost-plugin-freemium-logo/refs/heads/main/imgs/png/Logo-Login.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    width: 270px !important;
+    height: 70px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
 /* Hide the team edition warning in the bottom of the open top left corner menu */
 #startTrial {
 	display: none !important;
